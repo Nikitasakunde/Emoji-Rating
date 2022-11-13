@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Rating </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="feedback-container">
+        <div class="emoji-container">
+            <i class="fa-regular fa-face-angry fa-3x"></i>
+            <i class="fa-regular fa-face-frown fa-3x"></i>
+            <i class="fa-regular fa-face-meh fa-3x"></i>
+            <i class="fa-regular fa-face-smile fa-3x"></i>
+            <i class="fa-regular fa-face-laugh fa-3x"></i>
+        </div>
+        <div class="rating-container">
+            <i class="fa-solid fa-star fa-2x active"></i>
+            <i class="fa-solid fa-star fa-2x"></i>
+            <i class="fa-solid fa-star fa-2x"></i>
+            <i class="fa-solid fa-star fa-2x"></i>
+            <i class="fa-solid fa-star fa-2x"></i>
+        </div> 
+    </div>
+    <script>
+        const stars = document.querySelectorAll(".rating-container .fa-star");
+        const emoji = document.querySelectorAll(".emoji-container .fa-regular");
+        const colorsArr = ["red" , "blue" , "cyan" , "lightgreen" ,"green"];
+
+        updateRating(0);
+
+        stars.forEach((stars , index)=>{
+            stars.addEventListener("click" , ()=>{
+                updateRating(index);
+            });
+        });
+
+        function updateRating(index){
+            stars.forEach((stars,idx) =>{
+                if(idx < index+1){
+                    stars.classList.add("active");
+                }
+                else{
+                    stars.classList.remove("active");
+                }
+            });
+            emoji.forEach(emojis =>{
+                emojis.style.transform = `translateX(-${index * 50}px)`;
+                emojis.style.color = colorsArr[index];
+            });
+        };
+    </script>
+</body>
+</html>
